@@ -1,0 +1,44 @@
+{
+  "name": "scalable-backend",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "bun --hot index.ts",
+    "worker": "bun --hot /src/worker/index.ts",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:push": "prisma migrate push",
+    "prisma:pull": "prisma db pull",
+    "prisma:studio": "prisma studio",
+    "prisma:preview": "prisma migrate preview",
+    "prisma:reset": "prisma migrate reset --force",
+    "test:load": "k6 run k6/performance-test.js",
+    "test:smoke": "k6 run --vus 1 --duration 10s k6/performance-test.js",
+    "test:stress": "k6 run --vus 100 --duration 5m k6/performance-test.js",
+    "test:load:docker": "docker run --rm -i grafana/k6 run - <performance-test.js",
+    "docker:up": "sudo docker compose -f docker/infra/docker-compose.yaml up -d",
+    "docker:down": "sudo docker compose -f docker/infra/docker-compose.yaml down",
+    "docker:build": "sudo docker compose -f docker/infra/docker-compose.yaml build",
+    "docker:deploy": "bun run docker:build && bun run docker:up"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^25.6.0",
+    "@types/pg": "^8.20.0",
+    "tsx": "^4.21.0"
+  },
+  "peerDependencies": {
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^7.8.0",
+    "bullmq": "^5.76.5",
+    "dotenv": "^17.4.2",
+    "ioredis": "^5.10.1",
+    "pg": "^8.20.0",
+    "prisma": "^7.8.0",
+    "zod": "^4.4.1"
+  }
+}
