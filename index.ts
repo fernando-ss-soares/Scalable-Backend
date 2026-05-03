@@ -1,7 +1,4 @@
-// import { initServices } from "./src/configuration";
 import { routes as routes } from "./src/routes";
-
-// await initServices();
 
 const server = Bun.serve({
   port: 3000,
