@@ -1,12 +1,13 @@
-# Scalable Backend API
+# Scalable Backend Bun API
 
-Este é um projeto de API robusta e escalável desenvolvida com **Node.js** e **TypeScript**, focada em alta performance e facilidade de manutenção. A aplicação utiliza **Prisma ORM** para interação com o banco de dados e inclui uma suíte de testes de carga com **k6**.
+Este é um projeto de API robusta e escalável desenvolvida com **Bun** e **TypeScript**, focada em alta performance e facilidade de manutenção. A aplicação utiliza **Prisma ORM** para interação com o banco de dados, **Redis** para otimização de performance e cache, e inclui uma suíte de testes de carga com **k6**.
 
 ## 🚀 Tecnologias Utilizadas
 
-- [Node.js](https://nodejs.org/) - Ambiente de execução JavaScript.
+- [Bun](https://bun.sh/) - Runtime JavaScript/TypeScript rápido e tudo-em-um.
 - [TypeScript](https://www.typescriptlang.org/) - Superset de JavaScript com tipagem estática.
 - [Prisma](https://www.prisma.io/) - ORM (Object-Relational Mapping) moderno.
+- [Redis](https://redis.io/) - Armazenamento de estrutura de dados in-memory.
 - [Dotenv](https://github.com/motdotla/dotenv) - Gerenciamento de variáveis de ambiente.
 - [k6](https://k6.io/) - Ferramenta de teste de carga e performance.
 
@@ -14,32 +15,35 @@ Este é um projeto de API robusta e escalável desenvolvida com **Node.js** e **
 
 1. **Clone o repositório:**
    ```bash
-   git clone https://github.com/seu-usuario/scalable-backend-api.git
-   cd scalable-backend-api
+   git clone https://github.com/seu-usuario/scalable-bun-prisma-redis-api.git
+   cd scalable-bun-prisma-redis-api
    ```
 
 2. **Instale as dependências:**
    ```bash
-   npm install
+   bun install
    ```
 
 3. **Configuração do Ambiente:**
    Crie um arquivo `.env` na raiz do projeto e configure a conexão com o banco de dados e outras variáveis necessárias:
    ```ini
    DATABASE_URL="mysql://usuario:senha@localhost:3306/nome_do_banco"
+   REDIS_HOST="localhost"
+   REDIS_PORT=6379
    ```
+   *Nota: O projeto está configurado para utilizar o Redis na porta padrão (`6379`) e não requer autenticação.*
 
 4. **Migrações do Banco de Dados:**
    Execute o Prisma para preparar o banco de dados:
    ```bash
-   npx prisma migrate dev
+   bunx prisma migrate dev
    ```
 
 ## 🛠️ Execução
 
 Para rodar o servidor em ambiente de desenvolvimento:
 ```bash
-npm run dev
+bun dev
 ```
 
 ## 📊 Testes de Performance
