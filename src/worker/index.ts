@@ -1,17 +1,19 @@
 import { Worker } from "bullmq";
 import { redis } from "../configuration/redis";
 import { prisma } from "../configuration/db";
+import type { CreatePaymentInterface } from "../types";
 
 const worker = new Worker(
-  "registerProduct",
+  "registerPayment",
   async (job) => {
-    const { name, price, description } = job.data.product;
+    const { amount, method, status, fraud }: CreatePaymentInterface =
+      job.data.payment;
 
-    const product = await prisma.product.create({
-      data: { name, price, description },
+    const payment = await prisma.payments.create({
+      data: { amount, method, status, fraud },
     });
 
-    return product;
+    return payment;
   },
   { connection: redis },
 );

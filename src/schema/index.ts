@@ -1,40 +1,44 @@
 import * as z from 'zod';
 
-export const ListProductSchema = z.object({
-    id: z.string().uuid(),
-    name: z.string().min(1),
-    price: z.number().positive(),
-    description: z.string().optional(),
+export const ListPaymentSchema = z.object({
+    id: z.number().int(),
+    amount: z.number().positive(),
+    method: z.string().min(1),
+    status: z.string().min(1),
+    fraud: z.boolean(),
     createdAt: z.date(),
+    updatedAt: z.date(),
 });
 
-export type Product = z.infer<typeof ListProductSchema>;
+export type Payment = z.infer<typeof ListPaymentSchema>;
 
-export const CreateProductSchema = z.object({
-    name: z.string().min(1),
-    price: z.number().positive(),
-    description: z.string().min(1),
+export const CreatePaymentSchema = z.object({
+    amount: z.number().positive(),
+    method: z.string().min(1),
+    status: z.string().min(1),
+    fraud: z.boolean(),
 });
 
-export type CreateProductInput = z.infer<typeof CreateProductSchema>;
+export type CreatePaymentInput = z.infer<typeof CreatePaymentSchema>;
 
-export const GetProductsSchema = z.object({
+export const GetPaymentsSchema = z.object({
     skip: z.number().nonnegative().default(0),
     limit: z.number().positive().max(100).default(10),
 });
 
-export type GetProductsInput = z.infer<typeof GetProductsSchema>;
+export type GetPaymentsInput = z.infer<typeof GetPaymentsSchema>;
 
-export const UpdateProductSchema = z.object({
-    name: z.string().min(1).optional(),
-    price: z.number().positive().optional(),
-    description: z.string().optional(),
+export const UpdatePaymentSchema = z.object({
+    amount: z.number().positive().optional(),
+    method: z.string().min(1).optional(),
+    status: z.string().min(1).optional(),
+    fraud: z.boolean().optional(),
 });
 
-export type UpdateProductInput = z.infer<typeof UpdateProductSchema>;
+export type UpdatePaymentInput = z.infer<typeof UpdatePaymentSchema>;
 
-export const DeleteProductSchema = z.object({
-    id: z.string().uuid(),
+export const DeletePaymentSchema = z.object({
+    id: z.number().int(),
 });
 
-export type DeleteProductInput = z.infer<typeof DeleteProductSchema>;
+export type DeletePaymentInput = z.infer<typeof DeletePaymentSchema>;

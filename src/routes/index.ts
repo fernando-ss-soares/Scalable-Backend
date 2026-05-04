@@ -1,5 +1,5 @@
-import { productRoutes } from "./product";
+import { paymentRoutes } from "./payment";
 
 export const routes = {
-    ...productRoutes
+    ...paymentRoutes
 }

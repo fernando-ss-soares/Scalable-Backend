@@ -1,27 +1,30 @@
-interface CreateProductInterface {
-  name: string;
-  price: number;
-  description: string;
+interface CreatePaymentInterface {
+  amount: number;
+  method: string;
+  status: string;
+  fraud: boolean;
 }
 
-interface ListProductInterface extends CreateProductInterface {
-  id: string;
+interface ListPaymentInterface extends CreatePaymentInterface {
+  id: number;
   createdAt: Date;
+  updatedAt: Date;
 }
 
-interface UpdateProductInterface {
-  name?: string;
-  price?: number;
-  description?: string;
+interface UpdatePaymentInterface {
+  amount?: number;
+  method?: string;
+  status?: string;
+  fraud?: boolean;
 }
 
-interface DeleteProductInterface {
-  id: string;
+interface DeletePaymentInterface {
+  id: number;
 }
 
 export type {
-  CreateProductInterface,
-  ListProductInterface,
-  UpdateProductInterface,
-  DeleteProductInterface,
+  CreatePaymentInterface,
+  ListPaymentInterface,
+  UpdatePaymentInterface,
+  DeletePaymentInterface,
 };

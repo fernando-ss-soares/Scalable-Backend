@@ -12,11 +12,12 @@ datasource db {
   provider = "postgresql"
 }
 
-model Product {
-  id          Int      @id @default(autoincrement())
-  name        String
-  description String
-  price       Float
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+model Payments {
+  id        Int      @id @default(autoincrement())
+  amount    Float
+  method    String
+  status    String
+  fraud     Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

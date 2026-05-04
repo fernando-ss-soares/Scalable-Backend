@@ -14,13 +14,14 @@ export const options = {
 };
 
 export default function () {
-  const url = 'http://localhost:3000/products';
+  const url = 'http://localhost:3000/payments';
   
   // O corpo da requisição (Payload)
   const payload = JSON.stringify({
-    name: "Teste de carga",
-    price: 199,
-    description: "Teste de carga",
+    amount: 1000, // Exemplo de valor formatado
+    method: "credit_card",
+    status: "pending",
+    fraud: false,
   });
 
   // Configuração dos Headers (ajustado para application/json que é o padrão de APIs)
@@ -33,7 +34,7 @@ export default function () {
   const res = http.post(url, payload, params);
 
   check(res, {
-    'produto criado (202 ou 200)': (r) => r.status === 202 || r.status === 200,
+    'pagamento criado (202 ou 200)': (r) => r.status === 202 || r.status === 200,
     'tempo de resposta < 800ms': (r) => r.timings.duration < 800,
   });
 
